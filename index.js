@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const { v4: uuidv4 } = require("uuid");
 
 app.use(express.json());
 
@@ -67,7 +68,7 @@ app.post("/api/persons", (request, response) => {
   const person = {
     name: body.name,
     number: body.number,
-    id: Math.random().toString(36).slice(2),
+    id: uuidv4(),
   };
 
   persons = persons.concat(person);

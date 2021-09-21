@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const { v4: uuidv4 } = require("uuid");
-var morgan = require("morgan");
+const morgan = require("morgan");
 
 app.use(express.json());
 
@@ -28,7 +28,13 @@ let persons = [
   },
 ];
 
-app.use(morgan("tiny"));
+morgan.token("post", (req, res) =>
+  req.route?.methods?.post ? JSON.stringify(req.body) : undefined
+);
+
+app.use(
+  morgan(":method :url :status :res[content-length] - :response-time ms :post")
+);
 
 app.get("/api/persons", (request, response) => {
   response.json(persons);

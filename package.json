@@ -10,11 +10,13 @@
     "build:ui": "rm -rf build && cd ../fullstackopen/part2/phonebook/ && npm run build --prod && cp -r build ../../../fullstackopen-part3/",
     "deploy": "git push heroku main",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
-    "logs:prod": "heroku logs --tail"
+    "logs:prod": "heroku logs --tail",
+    "lint": "eslint ."
   },
   "author": "PeterBrw",
   "license": "MIT",
   "devDependencies": {
+    "eslint": "^7.32.0",
     "nodemon": "^2.0.12",
     "prettier": "2.4.1"
   },
